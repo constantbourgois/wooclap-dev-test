@@ -1,0 +1,10 @@
+.history
+.vscode/
+client/.parcel-cache
+client/node_modules/
+client/dist
+server/node_modules/
+server/.cache/
+
+.DS_Store
+server/.config/configstore/update-notifier-npm.json

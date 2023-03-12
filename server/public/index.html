@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Socket.io</title>
+</head>
+<body>
+  <h1>Hello World</h1>
+
+  <h2>Events</h2>
+  <ul id="msg-list">
+  </ul>
+
+  <div>
+    <input id="msg-box" type="text" />
+    <button id="send-btn">Send</button>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.5.4/socket.io.js" integrity="sha512-YeeA/Qxn5hYdkukScTCNNOhTrv1C2RubAGButJ1rmgQwZf/HdRaCGl+JAVkqsqaNRaYNHdheiuKKuPf9mDcqKg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script>
+    const socket = io("Wooclap-Tech-Case-boilerplate-backend.thomaschapeaux.repl.co");
+
+    socket.on("connect", () => {
+      console.log(newUser);
+    })
+    
+
+    document.getElementById("send-btn").addEventListener("click", () => {
+      const msg = document.getElementById("msg-box").value;
+      socket.emit("send-msg", msg);
+      document.getElementById("msg-box").value = "";
+    })
+
+    socket.on("rcv-msg", (msg) => {
+      const list = document.getElementById("msg-list");
+
+      const child = document.createElement("li");
+      child.innerHTML = JSON.stringify(msg);
+      list.appendChild(child)
+    })
+  </script>
+</body>
+</html>
